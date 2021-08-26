@@ -1,0 +1,28 @@
+<template>
+    <lightning-button label="NEW" onclick={openModal} variant="brand">
+    </lightning-button>
+    <template if:true={isOpenModal}>  
+        <div class="slds-modal slds-fade-in-open slds-backdrop">  
+            <div class="slds-modal__container"> 
+                <header>
+                    <div class="slds-modal__header">  
+                      <lightning-button-icon icon-name="utility:close" alternative-text="Close this window" size="large"  
+                      variant="bare-inverse" onclick={closeModal} class="slds-modal__close">  
+                      </lightning-button-icon>  
+                      <h2>Create new contact</h2>  
+                    </div>
+                </header>  
+                <div class="slds-modal__content slds-p-around_medium" id="modal-content-id-1">
+                    <lightning-card>
+                        <lightning-record-form
+                            object-api-name={objectApiName}
+                            fields={fields}
+                            onsuccess={handleSuccess}
+                            oncancel={closeModal}>
+                        </lightning-record-form>
+                    </lightning-card>
+                </div>
+            </div>
+        </div>
+    </template>  
+</template>  
