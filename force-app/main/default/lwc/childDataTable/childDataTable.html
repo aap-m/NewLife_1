@@ -1,0 +1,47 @@
+<template>
+    <lightning-card title="Lightning Datatable for Contacts">
+        <div class="slds-m-around_medium">
+            <lightning-input type="FirstName" onchange={handleKeyClick} class="slds-m-bottom_small" label="Search by name"
+            value={wordKey}>
+            </lightning-input>
+            <lightning-button label="Filter" onclick={handleFilterClick} variant="brand">
+            </lightning-button>
+            <c-child-create-contact onnext={handleSuccess}>
+            </c-child-create-contact>
+        </div>
+        <lightning-datatable 
+            key-field="Id" 
+            data={contact} 
+            columns={columns}  
+            hide-checkbox-column="true"
+            onrowaction={handleRowAction}>
+        </lightning-datatable>
+        <template if:true={isOpenModal}>  
+            <div class="slds-modal slds-fade-in-open slds-backdrop">  
+                <div class="slds-modal__container">  
+                    <header>
+                        <div class="slds-modal__header">  
+                            <lightning-button-icon icon-name="utility:close" alternative-text="Close this window" size="large"  
+                            variant="bare-inverse" onclick={closeModal} class="slds-modal__close">  
+                            </lightning-button-icon>  
+                            <h2>Delite Contact
+                            </h2>  
+                        </div>  
+                        <div class="slds-modal__content slds-p-around_medium">    
+                            <P>Are you sure you want to delete this contact?  
+                            </P>  
+                        </div>  
+                    </header>
+                    <footer>
+                        <div class="slds-modal__footer">  
+                            <lightning-button icon-name="utility:close" label="cancel" variant="success" onclick={closeModal}>  
+                            </lightning-button>  
+                            <lightning-button icon-name="utility:close" label="delite" variant="destructive" onclick={deliteContact}>  
+                            </lightning-button> 
+                        </div>  
+                    </footer>
+                </div>  
+            </div>  
+        </template>  
+    </lightning-card>
+</template>
